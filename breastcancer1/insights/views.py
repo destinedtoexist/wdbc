@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 
 
 import pickle
@@ -20,4 +20,4 @@ def corrcoef(request):
 
     corr = np.corrcoef(original.loc[:, features], rowvar=False)
     corr = pd.DataFrame(corr, index=features, columns=features)
-    return JsonResponse(corr.to_json(), safe=False)
+    return HttpResponse(corr.to_json())
