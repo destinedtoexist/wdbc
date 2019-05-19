@@ -16,6 +16,7 @@ def summary(request):
     response = {}
 
     response['features'] = features
-    response['summary'] = original.describe().to_json()
+    response['summary'] = original.drop('id', axis=1).describe().to_json()
+    response['shape'] = original.shape
     
     return JsonResponse(response, safe=False)
